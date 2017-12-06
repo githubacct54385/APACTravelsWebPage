@@ -31,6 +31,8 @@ post '/chargeSingapore' do
 end
 
 post '/chargeThailand' do
+	# Amount in cents
+  	@amount = 80000
 
 	customer = Stripe::Customer.create(
     :email => 'customer@example.com',
