@@ -1,10 +1,6 @@
 <link rel="stylesheet" type="text/css" href="<%= url("/css/style.css")%>">
 
 <script src="https://checkout.stripe.com/checkout.js"></script>
-<!-- Fly to Singapore Form -->
-<!--<form action="/chargeSingapore" method="POST" id="payment-form">
-	<input id="flySingapore" type="image" src="/singapore.jpg" width="400" height="225" />
-</form>-->
 
 <!-- Fly to Singapore Form -->
 <div class="img__wrap">
@@ -21,8 +17,6 @@
   </div>
 </div>
 
-
-
 <!-- Fly to Thailand Form -->
 <div class="img__wrap">
 	<img src="/thailand.jpg" width="400" height="225">
@@ -37,64 +31,3 @@
         </form>
   </div>
 </div>
-
-<script>
-
-/*var handler = StripeCheckout.configure({
-  //key: 'pk_test_16nh1JKh21099AqTmHdi91vj',
-  key: '<%= settings.publishable_key %>',
-  image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
-  locale: 'auto',
-  token: function(token) {
-    // You can access the token ID with `token.id`.
-    // Get the token ID to your server-side code for use.
-    stripeTokenHandler(token);
-  }
-});
-
-function stripeTokenHandler(token) {
-  // Insert the token ID into the form so it gets submitted to the server
-  var form = document.getElementById('payment-form');
-  var hiddenInput = document.createElement('input');
-  hiddenInput.setAttribute('type', 'hidden');
-  hiddenInput.setAttribute('name', 'stripeToken');
-  hiddenInput.setAttribute('value', token.id);
-  form.appendChild(hiddenInput);
-  // Submit the form
-  form.submit();
-}
-
-/*document.getElementById('flySingapore').addEventListener('click', function(e) {
-  // Open Checkout with further options:
-  handler.open({
-    name: 'Travel To Singapore',
-    description: 'Flight + Hotel',
-    currency: 'usd',
-    amount: 80000
-  });
-  e.preventDefault();
-});
-
-document.getElementById('clickPayThailand').addEventListener('click', function(e) {
-  // Open Checkout with further options:
-  handler.open({
-    name: 'Travel To Thailand',
-    description: 'Flight + Hotel',
-    currency: 'usd',
-    amount: 80000
-  });
-  e.preventDefault();
-});
-
-// Close Checkout on page navigation:
-window.addEventListener('popstate', function() {
-  handler.close();
-});*/
-</script>
-
-    <!--<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="<%= settings.publishable_key %>"
-            data-description="Buy me!"
-            data-amount="500"
-            data-locale="auto"></script>
-</form>-->
