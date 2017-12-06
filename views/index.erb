@@ -2,9 +2,10 @@
 
 <script src="https://checkout.stripe.com/checkout.js"></script>
 
+<div>
 <!-- Fly to Singapore Form -->
 <div class="img__wrap">
-	<img src="/singapore.jpg" width="400" height="225">
+	<img id="image" src="/singapore.jpg">
 <div class="img__description_layer">
 	<form action="/chargeSingapore" method="POST">
 		<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -19,7 +20,7 @@
 
 <!-- Fly to Thailand Form -->
 <div class="img__wrap">
-	<img src="/thailand.jpg" width="400" height="225">
+	<img id="image" src="/thailand.jpg">
 <div class="img__description_layer">
 	<form action="/chargeThailand" method="POST">
 		<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -30,4 +31,5 @@
             data-locale="auto"></script>
         </form>
   </div>
+</div>	
 </div>

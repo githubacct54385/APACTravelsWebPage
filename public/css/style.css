@@ -5,6 +5,22 @@
   border: 0;
 }
 
+/*#image {
+  position: absolute;
+  height: 225px;
+  max-width: 600px;
+  width: 600px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}*/
+#image {
+  width: auto ;
+  max-width: 100% ;
+  height: auto ;  
+}
+
+
 html {
   font-family: helvetica, arial, sans-serif;
 }
@@ -12,8 +28,9 @@ html {
 /* relevant styles */
 .img__wrap {
   position: relative;
-  height: 225px;
-  width: 400px;
+  height: auto;
+  width: auto;
+  max-width: 100% ;
 }
 
 .img__description_layer {
