@@ -1,20 +1,17 @@
-<link rel="stylesheet" type="text/css" href="<%= url("/css/style.css")%>">
-
 <script src="https://checkout.stripe.com/checkout.js"></script>
 
-<div>
 <!-- Fly to Singapore Form -->
 <div class="img__wrap">
 	<img id="image" src="/singapore.jpg">
 <div class="img__description_layer">
-	<form action="/chargeSingapore" method="POST">
+	<form action="/chargeSingapore" method="POST" id="singaporeForm">
 		<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="<%= settings.publishable_key %>"
             data-description="Flight to Singapore + Hotel"
             data-amount="80000"
             data-label="Fly Singapore"
             data-locale="auto"></script>
-        </form>
+    </form>
   </div>
 </div>
 
@@ -31,5 +28,49 @@
             data-locale="auto"></script>
         </form>
   </div>
-</div>	
 </div>
+
+<!-- Fly to China Form -->
+<div class="img__wrap">
+	<img id="image" src="/china.jpg">
+<div class="img__description_layer">
+	<form action="/chargeChina" method="POST">
+		<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= settings.publishable_key %>"
+            data-description="Flight to China + Hotel"
+            data-amount="80000"
+            data-label="Fly China"
+            data-locale="auto"></script>
+        </form>
+  </div>
+</div>
+
+<!-- Fly to Vietnam Form -->
+<div class="img__wrap">
+	<img id="image" src="/vietnam.jpg">
+<div class="img__description_layer">
+	<form action="/chargeVietnam" method="POST">
+		<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= settings.publishable_key %>"
+            data-description="Flight to Vietnam + Hotel"
+            data-amount="80000"
+            data-label="Fly Vietnam"
+            data-locale="auto"></script>
+        </form>
+  </div>
+</div>
+
+  <!-- Fly to Cambodia Form -->
+<div class="img__wrap">
+	<img id="image" src="/cambodia.jpg">
+<div class="img__description_layer">
+	<form action="/chargeCambodia" method="POST">
+		<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= settings.publishable_key %>"
+            data-description="Flight to Cambodia + Hotel"
+            data-amount="80000"
+            data-label="Fly Cambodia"
+            data-locale="auto"></script>
+        </form>
+  </div>
+</div>				
