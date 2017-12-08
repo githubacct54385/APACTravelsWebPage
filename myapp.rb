@@ -14,9 +14,8 @@ end
 
 def SendEmail(email, dest)
   from = Email.new(email: ENV['SUPPORT_EMAIL'])
-  to = Email.new(email: email)
-  #contentDest = 'We hope you enjoy your stay in ' + dest.to_s + '!' 
-  contentDest = 'We hope you enjoy your vacation!'
+  to = Email.new(email: email.to_s)
+  contentDest = 'We hope you enjoy your stay in ' + dest.to_s + '!' 
   subject = 'Thank you for signing up with APAC Travels!'
   content = Content.new(type: 'text/plain', value: contentDest)
   mail = Mail.new(from, subject, to, content)
@@ -46,7 +45,7 @@ post '/chargeSingapore' do
   )
 
   @dest = "Singapore"
-  #SendEmail(@sendEmail, @dest)
+  SendEmail(@sendEmail, @dest)
   erb :charge
 end
 
@@ -68,7 +67,7 @@ post '/chargeThailand' do
   )
 
   @dest = "Thailand"
-  #SendEmail(@sendEmail, @dest)
+  SendEmail(@sendEmail, @dest)
   erb :charge
 end
 
@@ -90,7 +89,7 @@ post '/chargeChina' do
   )
 
 	@dest = "China"
-  #SendEmail(@sendEmail, @dest)
+  SendEmail(@sendEmail, @dest)
   erb :charge
 end
 
@@ -112,7 +111,7 @@ post '/chargeVietnam' do
   )
 
 	@dest = "Vietnam"
-  #SendEmail(@sendEmail, @dest)
+  SendEmail(@sendEmail, @dest)
   erb :charge
 end
 
@@ -134,7 +133,7 @@ post '/chargeCambodia' do
   )
 
 	@dest = "Cambodia"
-  #SendEmail(@sendEmail, @dest)
+  SendEmail(@sendEmail, @dest)
   erb :charge
 end
 
