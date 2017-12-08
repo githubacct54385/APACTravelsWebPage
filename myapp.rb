@@ -29,24 +29,24 @@ end
 
 post '/chargeSingapore' do
 	# Amount in cents
-  	@amount = 80000
-    @sendEmail = params[:stripeEmail]
+  @amount = 80000
+  @sendEmail = params[:stripeEmail]
 
-  	customer = Stripe::Customer.create(
-    	:email => 'customer@example.com',
-    	:source  => params[:stripeToken]
-  	)
+  customer = Stripe::Customer.create(
+    :email => 'customer@example.com',
+    :source  => params[:stripeToken]
+  )
 
-  	charge = Stripe::Charge.create(
-    	:amount      => @amount,
-    	:description => 'Sinatra Charge - Singapore Flight + Hotel',
-    	:currency    => 'usd',
-    	:customer    => customer.id
-  	)
+  charge = Stripe::Charge.create(
+    :amount      => @amount,
+    :description => 'Sinatra Charge - Singapore Flight + Hotel',
+    :currency    => 'usd',
+    :customer    => customer.id
+  )
 
-  	@dest = "Singapore"
-    SendEmail(@sendEmail, @dest)
-  	erb :charge
+  @dest = "Singapore"
+  SendEmail(@sendEmail, @dest)
+  erb :charge
 end
 
 post '/chargeThailand' do
@@ -73,68 +73,68 @@ end
 
 post '/chargeChina' do
 	# Amount in cents
-  	@amount = 80000
-    @sendEmail = params[:stripeEmail]
+  @amount = 80000
+  @sendEmail = params[:stripeEmail]
 
 	customer = Stripe::Customer.create(
     :email => 'customer@example.com',
     :source  => params[:stripeToken]
-    )
+  )
 
-    charge = Stripe::Charge.create(
+  charge = Stripe::Charge.create(
     :amount      => @amount,
     :description => 'Sinatra Charge - China Flight + Hotel',
     :currency    => 'usd',
     :customer    => customer.id
-    )
+  )
 
 	@dest = "China"
   SendEmail(@sendEmail, @dest)
-  	erb :charge
+  erb :charge
 end
 
 post '/chargeVietnam' do
 	# Amount in cents
-  	@amount = 80000
-    @sendEmail = params[:stripeEmail]
+  @amount = 80000
+  @sendEmail = params[:stripeEmail]
 
 	customer = Stripe::Customer.create(
     :email => 'customer@example.com',
     :source  => params[:stripeToken]
-    )
+  )
 
-    charge = Stripe::Charge.create(
+  charge = Stripe::Charge.create(
     :amount      => @amount,
     :description => 'Sinatra Charge - Vietnam Flight + Hotel',
     :currency    => 'usd',
     :customer    => customer.id
-    )
+  )
 
 	@dest = "Vietnam"
   SendEmail(@sendEmail, @dest)
-  	erb :charge
+  erb :charge
 end
 
 post '/chargeCambodia' do
 	# Amount in cents
-  	@amount = 80000
-    @sendEmail = params[:stripeEmail]
+  @amount = 80000
+  @sendEmail = params[:stripeEmail]
 
 	customer = Stripe::Customer.create(
     :email => 'customer@example.com',
     :source  => params[:stripeToken]
-    )
+  )
 
-    charge = Stripe::Charge.create(
+  charge = Stripe::Charge.create(
     :amount      => @amount,
     :description => 'Sinatra Charge - Cambodia Flight + Hotel',
     :currency    => 'usd',
     :customer    => customer.id
-    )
+  )
 
 	@dest = "Cambodia"
   SendEmail(@sendEmail, @dest)
-  	erb :charge
+  erb :charge
 end
 
 error Stripe::CardError do
