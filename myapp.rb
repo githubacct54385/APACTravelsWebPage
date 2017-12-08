@@ -46,7 +46,7 @@ post '/chargeSingapore' do
   )
 
   @dest = "Singapore"
-  SendEmail(@sendEmail, @dest)
+  #SendEmail(@sendEmail, @dest)
   erb :charge
 end
 
@@ -68,7 +68,7 @@ post '/chargeThailand' do
   )
 
   @dest = "Thailand"
-  SendEmail(@sendEmail, @dest)
+  #SendEmail(@sendEmail, @dest)
   erb :charge
 end
 
@@ -90,7 +90,7 @@ post '/chargeChina' do
   )
 
 	@dest = "China"
-  SendEmail(@sendEmail, @dest)
+  #SendEmail(@sendEmail, @dest)
   erb :charge
 end
 
@@ -112,7 +112,7 @@ post '/chargeVietnam' do
   )
 
 	@dest = "Vietnam"
-  SendEmail(@sendEmail, @dest)
+  #SendEmail(@sendEmail, @dest)
   erb :charge
 end
 
@@ -134,7 +134,7 @@ post '/chargeCambodia' do
   )
 
 	@dest = "Cambodia"
-  SendEmail(@sendEmail, @dest)
+  #SendEmail(@sendEmail, @dest)
   erb :charge
 end
 
