@@ -15,7 +15,8 @@ end
 def SendEmail(email, dest)
   from = Email.new(email: ENV['SUPPORT_EMAIL'])
   to = Email.new(email: email)
-  contentDest = 'We hope you enjoy your stay in ' + dest.to_s + '!' 
+  #contentDest = 'We hope you enjoy your stay in ' + dest.to_s + '!' 
+  contentDest = 'We hope you enjoy your vacation!'
   subject = 'Thank you for signing up with APAC Travels!'
   content = Content.new(type: 'text/plain', value: contentDest)
   mail = Mail.new(from, subject, to, content)
