@@ -1,11 +1,25 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    activesupport (5.1.4)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (~> 0.7)
+      minitest (~> 5.1)
+      tzinfo (~> 1.1)
+    concurrent-ruby (1.0.5)
     faraday (0.13.1)
       multipart-post (>= 1.2, < 3)
+    i18n (0.9.1)
+      concurrent-ruby (~> 1.0)
+    jbuilder (2.7.0)
+      activesupport (>= 4.2.0)
+      multi_json (>= 1.2)
+    json (2.1.0)
     mail (2.7.0)
       mini_mime (>= 0.1.1)
     mini_mime (1.0.0)
+    minitest (5.10.3)
+    multi_json (1.12.2)
     multipart-post (2.0.0)
     mustermann (1.0.1)
     pony (1.11)
@@ -22,17 +36,25 @@ GEM
       rack (~> 2.0)
       rack-protection (= 2.0.0)
       tilt (~> 2.0)
+    smtpapi (0.1.0)
     stripe (3.8.0)
       faraday (~> 0.10)
+    thread_safe (0.3.6)
     tilt (2.0.8)
+    tzinfo (1.2.4)
+      thread_safe (~> 0.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  jbuilder
+  json
+  mail
   pony (~> 1.11)
   sendgrid-ruby
   sinatra
+  smtpapi
   stripe
 
 BUNDLED WITH

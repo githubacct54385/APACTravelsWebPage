@@ -4,3 +4,7 @@ gem 'stripe'
 gem 'pony', '~> 1.11'
 # Include Sendgrid
 gem 'sendgrid-ruby'
+gem 'smtpapi'
+gem 'mail'
+gem 'json'
+gem 'jbuilder'
