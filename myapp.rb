@@ -18,15 +18,15 @@ def SendEmailUsingTemplateJson(emailParam, dest)
   templateID = "None"
   case dest
   when "Singapore"
-    templateID = "a6e4dcc3-276b-4d32-8169-3024136e1ce8"
+    templateID = ENV['SingTemplate']
   when "Thailand"
-    templateID = "0293268b-8887-4cb4-a04a-151afd831bb6"
+    templateID = ENV['ThaiTemplate']
   when "China"
-    templateID = "9b18595c-d90e-4354-bda3-3662e965642c"
+    templateID = ENV['ChinaTemplate']
   when "Vietnam"
-    templateID = "239cf341-d9b1-4d6a-aa42-a5a01fac4b6b"
+    templateID = ENV['VietnamTemplate']
   when "Cambodia"
-    templateID = "bf930d96-2969-437c-bf5a-0b0f12e76468"
+    templateID = ENV['CambodiaTemplate']
   else
     puts "Unknown dest variable" + dest.to_s
     return
