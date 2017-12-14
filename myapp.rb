@@ -14,7 +14,7 @@ get '/' do
   erb :index
 end
 
-def SendEmailUsingTemplateJson(emailParam, dest)
+def SendEmailUsingTemplateJson(toEmail, dest)
   templateID = "None"
   case dest
   when "Singapore"
@@ -31,14 +31,14 @@ def SendEmailUsingTemplateJson(emailParam, dest)
     puts "Unknown dest variable" + dest.to_s
     return
   end
-  supportEmail = ENV['SUPPORT_EMAIL']
+  fromEmail = ENV['SUPPORT_EMAIL']
 
   json_map = { 'personalizations' => [
     { 
-      'to' =>  [{ 'email' => "#{emailParam}" }], 
+      'to' =>  [{ 'email' => "#{toEmail}" }], 
       'subject' => 'Thank you for booking with APAC Travels'  
     }], 
-    'from' => { 'email' => "#{supportEmail}" },
+    'from' => { 'email' => "#{fromEmail}" },
     'template_id' => "#{templateID}",
     'content' => [{ 'type' => 'text/html', 'value' => 'its easy to do' }]
   }
