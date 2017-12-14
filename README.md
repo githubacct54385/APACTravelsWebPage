@@ -16,10 +16,10 @@ This [guide](https://app.sendgrid.com/guide/integrate/langs/ruby) is helpful whe
 ```ruby
 json_map = { 'personalizations' => [
     { 
-      'to' =>  [{ 'email' => "#{emailParam}" }], 
+      'to' =>  [{ 'email' => "#{toEmail}" }], 
       'subject' => 'Thank you for booking with APAC Travels'  
     }], 
-    'from' => { 'email' => "#{supportEmail}" },
+    'from' => { 'email' => "#{fromEmail}" },
     'template_id' => "#{templateID}",
     'content' => [{ 'type' => 'text/html', 'value' => 'its easy to do' }]
   }
