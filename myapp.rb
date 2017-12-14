@@ -34,23 +34,23 @@ def SendEmailUsingTemplateJson(emailParam, dest)
   supportEmail = ENV['SUPPORT_EMAIL']
 
   json_map = { 'personalizations' => [
-  { 
-    'to' =>  [{ 'email' => "#{emailParam}" }], 
-    'subject' => 'Thank you for booking with APAC Travels'  
-  }], 
-  'from' => { 'email' => "#{supportEmail}" },
-  'template_id' => "#{templateID}",
-  'content' => [{ 'type' => 'text/html', 'value' => 'its easy to do' }]
-}
+    { 
+      'to' =>  [{ 'email' => "#{emailParam}" }], 
+      'subject' => 'Thank you for booking with APAC Travels'  
+    }], 
+    'from' => { 'email' => "#{supportEmail}" },
+    'template_id' => "#{templateID}",
+    'content' => [{ 'type' => 'text/html', 'value' => 'its easy to do' }]
+  }
 
-json_map.to_json
-data = json_map
+  json_map.to_json
+  data = json_map
 
-sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-response = sg.client.mail._("send").post(request_body: data)
-puts response.status_code
-puts response.body
-puts response.headers
+  sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+  response = sg.client.mail._("send").post(request_body: data)
+  puts response.status_code
+  puts response.body
+  puts response.headers
 end
 
 
