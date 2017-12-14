@@ -2,7 +2,7 @@
 
 Sample Travels Webpage for APAC written using Rails w/ Sinatra.  Email confirmations sent out using SendGrid.
 
-[Install Rails](http://installrails.com/)
+[Install Rails](http://installrails.com/). 
 [Sinatra](http://sinatrarb.com/intro.html)  
 [SendGrid](https://sendgrid.com/)  
 [Payments done with Stripe Checkout](https://stripe.com/checkout)  
