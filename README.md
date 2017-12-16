@@ -1,8 +1,7 @@
 # APACTravelsWebPage
 
-Sample Travels Webpage for APAC written using Rails w/ Sinatra.  Email confirmations sent out using SendGrid.
-
-[Install Rails](http://installrails.com/)  
+Sample Travels Webpage for APAC written using Sinatra.  Email confirmations sent out using SendGrid.
+  
 [Sinatra](http://sinatrarb.com/intro.html)  
 [SendGrid](https://sendgrid.com/)  
 [Payments done with Stripe Checkout](https://stripe.com/checkout)  
@@ -34,7 +33,7 @@ json_map = { 'personalizations' => [
   puts response.headers
 ```
 
-Working with Stripe Checkout was also really simple.  Just plug in the Javascript they provide on their website in your HTML, setup your Rails code to handle the response and your done.  Stripe has a [tutorial](http://sinatrarb.com/intro.html) on how to get a Rails app working with Stripe.
+Working with Stripe Checkout was also really simple.  Just plug in the Javascript they provide on their website in your HTML, setup your Sinatra code to handle the response and your done.  Stripe has a [tutorial](http://sinatrarb.com/intro.html) on how to get a Sinatra app working with Stripe.
 
 Here is how I run the app in terminal:  
 SingTemplate=<SENDGRID_SINGAPORE_TEMPLATE_HERE> ThaiTemplate=<SENDGRID_THAILAND_TEMPLATE_HERE> ChinaTemplate=<SENDGRID_CHINA_TEMPLATE_HERE> VietnamTemplate=<SENDGRID_VIETNAM_TEMPLATE_HERE> CambodiaTemplate=<SENDGRID_CAMBODIA_TEMPLATE_HERE> SENDGRID_API_KEY=<YOUR_SEND_GRID_API_KEY> SUPPORT_EMAIL=<SENDER_EMAIL> PUBLISHABLE_KEY=<PUBLISHABLE_KEY> SECRET_KEY=<SECRET_KEY> ruby myapp.rb
