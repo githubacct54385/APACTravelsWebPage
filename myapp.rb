@@ -14,7 +14,7 @@ get '/' do
   erb :index
 end
 
-post "/WebhookEndpoint" do
+post '/WebhookEndpoint' do
   # Retrieve the request's body and parse it as JSON
   event_json = JSON.parse(request.body.read)
 
