@@ -14,6 +14,18 @@ get '/' do
   erb :index
 end
 
+post '/WebhookEndpoint'
+  # Retrieve the request's body and parse it as JSON
+  event_json = JSON.parse(request.body.read)
+
+  # Do something with event_json
+  #post event_json
+
+  SendEmail('alexbarke002@gmail.com', 'Singapore')
+
+  status 200
+end
+
 def SendEmailUsingTemplateJson(toEmail, dest)
   templateID = "None"
   case dest
@@ -59,7 +71,7 @@ def SendEmail(email, dest)
   from = Email.new(email: ENV['SUPPORT_EMAIL'])
   to = Email.new(email: email.to_s)
   contentDest = 'We hope you enjoy your stay in ' + dest.to_s + '!' 
-  subject = 'Thank you for signing up with APAC Travels!'
+  subject = 'Your charge was successful!'
   content = Content.new(type: 'text/plain', value: contentDest)
   mail = Mail.new(from, subject, to, content)
 
