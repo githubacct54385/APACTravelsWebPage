@@ -14,7 +14,7 @@ get '/' do
   erb :index
 end
 
-post '/WebhookPlainEmail' do
+post '/webhook2' do
   puts 'testing webhook'
   from = Email.new(email: ENV['SUPPORT_EMAIL'])
   to = Email.new(email: 'alexbarke002@gmail.com')
