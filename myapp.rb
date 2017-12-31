@@ -15,6 +15,26 @@ get '/' do
 end
 
 post '/webhook' do
+  # Retrieve the request's body and parse it as JSON
+  event_json = JSON.parse(request.body.read)
+
+  # Retrieve the event from Stripe
+  @event = Stripe::Event.retrieve(event_json['id'])
+
+  # Only respond to `invoice.payment_succeeded` events
+  if @event.type.eql?('charge.succeeded')
+    # Send a receipt for the invoice 
+    unless @event.data.object.charge.nil?
+      SendChargeSucceedEmail('alexbarke002@gmail.com')
+    end
+  else 
+    # Nothing to see here, return a 200
+    status 200
+  end
+end
+
+
+#post '/webhook' do
   
   #@charge = Stripe::Charge.retrieve("ch_1Bf1QLFb0ie2UiOWOCLtwkOx")
   #@customerEmail = charge.customer.email
@@ -27,22 +47,22 @@ post '/webhook' do
   #@event = Stripe::Event.retrieve(event_json['id'])
 
   # Retrieve the request's body and parse it as JSON
-  event_json = JSON.parse(request.body.read)
+  #event_json = JSON.parse(request.body.read)
 
   # Retrieve the event from Stripe
-  @event = Stripe::Event.retrieve(event_json['id'])
+  #@event = Stripe::Event.retrieve(event_json['id'])
 
   # Only respond to `invoice.payment_succeeded` events
-  if @event.type.eql?('charge.succeeded')
+  #if @event.type.eql?('charge.succeeded')
     #@charge = Stripe::Charge.retrieve("ch_1Bf1QLFb0ie2UiOWOCLtwkOx")
     #@customerEmail = charge.customer.email
-    SendChargeSucceedEmail('alexbarke002@gmail.com')
-  end
+    #SendChargeSucceedEmail('alexbarke002@gmail.com')
+  #end
 
   #SendEmailUsingTemplateJson('alexbarke002@gmail.com', 'Singapore')
 
-  status 200
-end
+  #status 200
+#end
 
 def SendEmailUsingTemplateJson(toEmail, dest)
   templateID = "None"
