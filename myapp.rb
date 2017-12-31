@@ -15,13 +15,15 @@ get '/' do
 end
 
 post '/WebhookEndpoint' do
+  
+  puts "Webhook hit"
   # Retrieve the request's body and parse it as JSON
-  event_json = JSON.parse(request.body.read)
+  #event_json = JSON.parse(request.body.read)
 
   # Do something with event_json
   #post event_json
 
-  SendEmail('alexbarke002@gmail.com', 'Singapore')
+  #SendEmail('alexbarke002@gmail.com', 'Singapore')
 
   status 200
 end
