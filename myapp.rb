@@ -17,12 +17,14 @@ end
 
 post '/webhook' do
   # Retrieve the request's body and parse it as JSON
-  event_json = JSON.parse(request.body.read)
+  #event_json = JSON.parse(request.body.read)
 
   # Retrieve the event from Stripe
-  @event = Stripe::Event.retrieve(event_json['id'])
+  #@event = Stripe::Event.retrieve(event_json['id'])
 
   SendEmailUsingTemplateJson('alexbarke002@gmail.com', 'Singapore')
+
+  status 200
 end
 
 #post '/WebhookEndpoint' do
