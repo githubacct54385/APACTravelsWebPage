@@ -16,7 +16,8 @@ end
 
 post '/webhook' do
   
-  SendChargeSucceedEmail('alexbarke002@gmail.com')
+  #SendChargeSucceedEmail('alexbarke002@gmail.com')
+  SendEmailUsingTemplateJson('alexbarke002@gmail.com', 'Singapore')
   status 200
 
   # Retrieve the request's body and parse it as JSON
