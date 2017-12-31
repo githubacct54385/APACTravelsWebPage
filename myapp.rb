@@ -26,7 +26,7 @@ post '/webhook' do
   @event_json = JSON.parse(request.body.read)
 
   # Retrieve the event from Stripe
-  @event = Stripe::Event.retrieve(event_json['id'])
+  @event = Stripe::Event.retrieve(@event_json['id'])
 
   # Only respond to `invoice.payment_succeeded` events
   if @event.type.eql?('charge.succeeded')
