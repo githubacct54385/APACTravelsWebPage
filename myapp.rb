@@ -15,6 +15,7 @@ get '/' do
 end
 
 post '/WebhookPlainEmail' do
+  puts 'testing webhook'
   from = Email.new(email: ENV['SUPPORT_EMAIL'])
   to = Email.new(email: 'alexbarke002@gmail.com')
   subject = 'Sending with SendGrid is Fun'
