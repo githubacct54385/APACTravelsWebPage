@@ -15,13 +15,15 @@ get '/' do
 end
 
 post '/webhook' do
+
+  puts "Enter webhook code"
   
   #SendChargeSucceedEmail('alexbarke002@gmail.com')
   #SendEmailUsingTemplateJson('alexbarke002@gmail.com', 'Singapore')
   #status 200
 
   # Retrieve the request's body and parse it as JSON
-  event_json = JSON.parse(request.body.read)
+  @event_json = JSON.parse(request.body.read)
 
   # Retrieve the event from Stripe
   @event = Stripe::Event.retrieve(event_json['id'])
