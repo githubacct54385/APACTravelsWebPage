@@ -21,7 +21,7 @@ post '/webhook2' do
   #SendEmailUsingTemplateJson(@sendEmail, @dest)
 
 
-  from = Email.new(email: 'test@example.com')
+  from = Email.new(email: 'support@enigmatic-lowlands-58124.herokuapp.com')
   to = Email.new(email: 'alexbarke002@gmail.com')
   subject = 'Sending with SendGrid is Fun'
   content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
