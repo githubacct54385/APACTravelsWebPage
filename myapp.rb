@@ -17,29 +17,21 @@ end
 post '/webhook2' do
 
   #@sendEmail = 'alexbarke002@gmail.com'
-  #@dest = 'Singapore'
-  #SendEmailUsingTemplateJson(@sendEmail, @dest)
+  @dest = 'Singapore'
 
+  # Retrieve the request's body and parse it as JSON
+  @event_json = JSON.parse(request.body.read)
 
-  json_map = { 'personalizations' => [
-    { 
-      'to' =>  [{ 'email' => 'alexbarke002@gmail.com' }], 
-      'subject' => 'Thank you for booking with APAC Travels'  
-    }], 
-    'from' => { 'email' => 'support@enigmatic-lowlands-58124.herokuapp.com' },
-    'content' => [{ 'type' => 'text/html', 'value' => 'its easy to do' }]
-  }
+  # Retrieve the event from Stripe
+  @event = Stripe::Event.retrieve(@event_json['id'])
 
-  json_map.to_json
-  data = json_map
+  if @event.type.eql?('charge.succeeded')
+    @email = @event.data.name
+    SendEmailUsingTemplateJson(@email, @dest)
 
-  sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-  response = sg.client.mail._("send").post(request_body: data)
-  puts response.status_code
-  puts response.body
-  puts response.headers
-
+  end
   status 200
+
 end
 
 post '/webhook' do
