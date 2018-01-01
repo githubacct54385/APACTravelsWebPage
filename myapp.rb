@@ -15,17 +15,23 @@ get '/' do
 end
 
 post '/webhook2' do
-  from = Email.new(email: 'test@example.com')
-  to = Email.new(email: 'alexbarke002@gmail.com')
-  subject = 'Sending with SendGrid is Fun'
-  content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
-  mail = Mail.new(from, subject, to, content)
 
-  sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-  response = sg.client.mail._('send').post(request_body: mail.to_json)
-  puts response.status_code
-  puts response.body
-  puts response.headers
+  @sendEmail = 'alexbarke002@gmail.com'
+  @dest = 'Singapore'
+  SendEmailUsingTemplateJson(@sendEmail, @dest)
+
+
+  #from = Email.new(email: 'test@example.com')
+  #to = Email.new(email: 'alexbarke002@gmail.com')
+  #subject = 'Sending with SendGrid is Fun'
+  #content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
+  #mail = Mail.new(from, subject, to, content)
+
+  #sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+  #response = sg.client.mail._('send').post(request_body: mail.to_json)
+  #puts response.status_code
+  #puts response.body
+  #puts response.headers
 
   status 200
 end
@@ -33,62 +39,15 @@ end
 post '/webhook' do
 
   puts "Enter webhook code"
-  
-  #SendChargeSucceedEmail('alexbarke002@gmail.com')
-  #SendEmailUsingTemplateJson('alexbarke002@gmail.com', 'Singapore')
-  #status 200
-
   # Retrieve the request's body and parse it as JSON
   @event_json = JSON.parse(request.body.read)
 
   # Retrieve the event from Stripe
   @event = Stripe::Event.retrieve(@event_json['id'])
 
-
   SendEmailUsingTemplateJson('alexbarke002@gmail.com', 'Singapore')
   status 200
-  # Only respond to `invoice.payment_succeeded` events
-  #if @event.type.eql?('charge.succeeded')
-    # Send a receipt for the invoice 
-   # unless @event.data.object.charge.nil?
-   #   SendEmailUsingTemplateJson('alexbarke002@gmail.com', 'Singapore')
-    #end
-  #else 
-    # Nothing to see here, return a 200
-   # status 200
-  #end
 end
-
-
-#post '/webhook' do
-  
-  #@charge = Stripe::Charge.retrieve("ch_1Bf1QLFb0ie2UiOWOCLtwkOx")
-  #@customerEmail = charge.customer.email
-  #SendChargeSucceedEmail(@customerEmail)
-
-  # Retrieve the request's body and parse it as JSON
-  #event_json = JSON.parse(request.body.read)
-
-  # Retrieve the event from Stripe
-  #@event = Stripe::Event.retrieve(event_json['id'])
-
-  # Retrieve the request's body and parse it as JSON
-  #event_json = JSON.parse(request.body.read)
-
-  # Retrieve the event from Stripe
-  #@event = Stripe::Event.retrieve(event_json['id'])
-
-  # Only respond to `invoice.payment_succeeded` events
-  #if @event.type.eql?('charge.succeeded')
-    #@charge = Stripe::Charge.retrieve("ch_1Bf1QLFb0ie2UiOWOCLtwkOx")
-    #@customerEmail = charge.customer.email
-    #SendChargeSucceedEmail('alexbarke002@gmail.com')
-  #end
-
-  #SendEmailUsingTemplateJson('alexbarke002@gmail.com', 'Singapore')
-
-  #status 200
-#end
 
 def SendEmailUsingTemplateJson(toEmail, dest)
   templateID = "None"
