@@ -172,7 +172,7 @@ post '/chargeSingapore' do
   @sendEmail = params[:stripeEmail]
 
   customer = Stripe::Customer.create(
-    :email => 'customer@example.com',
+    :email => @sendEmail,
     :source  => params[:stripeToken]
   )
 
