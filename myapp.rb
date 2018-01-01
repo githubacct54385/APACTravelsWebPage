@@ -16,7 +16,11 @@ end
 
 post '/InvoicePaymentSucceeded' do
   status 200
-  content = "Thank you for continuing your subscription to APAC Travels.  Your card has been billed $10."
+
+  @event_json = JSON.parse(request.body.read)
+  content = @event_json
+
+  #content = "Thank you for continuing your subscription to APAC Travels.  Your card has been billed $10."
   SendTestEmail('alexbarke002@gmail.com', 'Invoice Succeeded for APAC Travels', content)
 end
 
