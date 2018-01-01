@@ -26,9 +26,10 @@ post '/webhook2' do
   @event = Stripe::Event.retrieve(@event_json['id'])
 
   if @event.type == "charge.succeeded"
-    @email = @event.data.name
+    # Retrieve the charge
+    @charge = Stripe::Charge.retrieve(id: @event.data.object.charge, expand: ['customer'])
+    @email = @charge.name
     SendEmailUsingTemplateJson(@email, @dest)
-
   end
   status 200
 
