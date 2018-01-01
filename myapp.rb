@@ -15,11 +15,7 @@ get '/' do
 end
 
 post '/webhook2' do
-  #uts 'testing webhook'
-
-  #SendEmailUsingTemplateJson('alexbarke002@gmail.com', 'Singapore')
-
-  from = Email.new(email: 'support@enigmatic-lowlands.com')
+  from = Email.new(email: 'test@example.com')
   to = Email.new(email: 'alexbarke002@gmail.com')
   subject = 'Sending with SendGrid is Fun'
   content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
