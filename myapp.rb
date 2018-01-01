@@ -185,7 +185,7 @@ post '/chargeSingapore' do
 
   @dest = "Singapore"
   #SendEmailUsingTemplateJson(@sendEmail, @dest)
-  #SendEmail(@sendEmail, @dest)
+  SendEmail(@sendEmail, @dest)
   erb :charge
 end
 
