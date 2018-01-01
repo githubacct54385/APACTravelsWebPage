@@ -21,14 +21,20 @@ post '/webhook2' do
   #SendEmailUsingTemplateJson(@sendEmail, @dest)
 
 
-  from = Email.new(email: 'support@enigmatic-lowlands-58124.herokuapp.com')
-  to = Email.new(email: 'alexbarke002@gmail.com')
-  subject = 'Sending with SendGrid is Fun'
-  content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
-  mail = Mail.new(from, subject, to, content)
+  json_map = { 'personalizations' => [
+    { 
+      'to' =>  [{ 'email' => 'alexbarke002@gmail.com' }], 
+      'subject' => 'Thank you for booking with APAC Travels'  
+    }], 
+    'from' => { 'email' => 'support@enigmatic-lowlands-58124.herokuapp.com' },
+    'content' => [{ 'type' => 'text/html', 'value' => 'its easy to do' }]
+  }
+
+  json_map.to_json
+  data = json_map
 
   sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-  response = sg.client.mail._('send').post(request_body: mail.to_json)
+  response = sg.client.mail._("send").post(request_body: data)
   puts response.status_code
   puts response.body
   puts response.headers
