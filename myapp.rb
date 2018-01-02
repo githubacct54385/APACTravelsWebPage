@@ -8,6 +8,9 @@ include SendGrid
 set :publishable_key, ENV['PUBLISHABLE_KEY']
 set :secret_key, ENV['SECRET_KEY']
 
+# You can find your endpoint's secret in your webhook settings
+set :signing_secret, ENV['SIGNINGSECRET']
+
 Stripe.api_key = settings.secret_key
 
 get '/' do
@@ -15,13 +18,33 @@ get '/' do
 end
 
 post '/InvoicePaymentSucceeded' do
+
+  payload = request.body.read
+  sig_header = request.env['HTTP_STRIPE_SIGNATURE']
+  event = nil
+
+  begin
+    event = Stripe::Webhook.construct_event(
+      payload, sig_header, signing_secret
+    )
+  rescue JSON::ParserError => e
+    # Invalid payload
+    status 400
+    return
+  rescue Stripe::SignatureVerificationError => e
+    # Invalid signature
+    status 400
+    return
+  end
+
   status 200
 
-  @event_json = JSON.parse(request.body.read)
-  content = @event_json
-
+  #status 200
+  #event_json = JSON.parse(request.body.read)
+  #content = @event_json
+  #event_json.customer
   #content = "Thank you for continuing your subscription to APAC Travels.  Your card has been billed $10."
-  SendTestEmail('alexbarke002@gmail.com', 'Invoice Succeeded for APAC Travels', content)
+  #SendTestEmail('alexbarke002@gmail.com', 'Invoice Succeeded for APAC Travels', content)
 end
 
 def SendTestEmail(destEmail, subject, content)
