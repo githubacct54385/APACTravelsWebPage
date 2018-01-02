@@ -39,25 +39,19 @@ post '/InvoicePaymentSucceeded' do
 
   status 200
 
-  # Retrieve the request's body and parse it as JSON
-  event_json = JSON.parse(request.body.read)
-
-  # Retrieve the event from Stripe
-  @event = Stripe::Event.retrieve(event_json['id'])
-
-  # Only respond to `invoice.payment_succeeded` events
-  if @event.type.eql?('invoice.payment_succeeded')
-    # Send a receipt for the invoice 
-    unless @event.data.object.subscription.nil?
-      
-      # Retrieve the subscription
-      @subscription = Stripe::Subscription.retrieve(id: @event.data.object.subscription, expand: ['customer'])
-
-      # Format the period start and end dates
-      @period_start = Time.at(@subscription.current_period_start).getutc.strftime("%m/%d/%Y")
-      @period_end = Time.at(@subscription.current_period_end).getutc.strftime("%m/%d/%Y")
+  begin
+    event_json = JSON.parse(request.body.read)
+    event_object = event_json['data']['object']
+    #refer event types here https://stripe.com/docs/api#event_types
+    case event_json['type']
+      when 'invoice.payment_succeeded'
+        #Update the total subscription total
+        #Send in email to the user telling them that they resubbed
+        event_object['lines']['data'].each{ |i|
+          sub_id = i['id']
+          logger.debug sub_id
+        }
     end
-  end
 
   #content = @event_json
   #event_json.customer
