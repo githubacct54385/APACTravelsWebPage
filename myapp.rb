@@ -39,8 +39,8 @@ post '/InvoicePaymentSucceeded' do
 
   status 200
 
-  #status 200
-  #event_json = JSON.parse(request.body.read)
+  event_json = JSON.parse(request.body.read)
+  puts event_json
   #content = @event_json
   #event_json.customer
   #content = "Thank you for continuing your subscription to APAC Travels.  Your card has been billed $10."
