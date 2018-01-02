@@ -25,7 +25,7 @@ post '/InvoicePaymentSucceeded' do
 
   begin
     event = Stripe::Webhook.construct_event(
-      payload, sig_header, signing_secret
+      payload, sig_header, settings.signing_secret
     )
   rescue JSON::ParserError => e
     # Invalid payload
