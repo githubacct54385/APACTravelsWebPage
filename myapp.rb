@@ -39,22 +39,6 @@ post '/InvoicePaymentSucceeded' do
 
   status 200
 
-  begin
-    event_json = JSON.parse(request.body.read)
-    event_object = event_json['data']['object']
-    #refer event types here https://stripe.com/docs/api#event_types
-    case event_json['type']
-      when 'invoice.payment_succeeded'
-        #Update the total subscription total
-        #Send in email to the user telling them that they resubbed
-        event_object['lines']['data'].each{ |i|
-          sub_id = i['id']
-          logger.debug sub_id
-        }
-      end
-    end
-  end
-
   #content = @event_json
   #event_json.customer
   #content = "Thank you for continuing your subscription to APAC Travels.  Your card has been billed $10."
