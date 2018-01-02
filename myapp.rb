@@ -39,8 +39,27 @@ post '/InvoicePaymentSucceeded' do
 
   status 200
 
+  # Retrieve the request's body and parse it as JSON
   event_json = JSON.parse(request.body.read)
-  puts event_json
+
+  # Retrieve the event from Stripe
+  @event = Stripe::Event.retrieve(event_json['id'])
+
+  # Only respond to `invoice.payment_succeeded` events
+  if @event.type.eql?('invoice.payment_succeeded')
+    # Send a receipt for the invoice 
+    unless @event.data.object.subscription.nil?
+      
+      # Retrieve the subscription
+      @subscription = Stripe::Subscription.retrieve(id: @event.data.object.subscription, expand: ['customer'])
+
+      # Format the period start and end dates
+      @period_start = Time.at(@subscription.current_period_start).getutc.strftime("%m/%d/%Y")
+      @period_end = Time.at(@subscription.current_period_end).getutc.strftime("%m/%d/%Y")
+
+      
+  end
+
   #content = @event_json
   #event_json.customer
   #content = "Thank you for continuing your subscription to APAC Travels.  Your card has been billed $10."
