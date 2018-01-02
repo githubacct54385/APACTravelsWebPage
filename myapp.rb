@@ -56,8 +56,7 @@ post '/InvoicePaymentSucceeded' do
       # Format the period start and end dates
       @period_start = Time.at(@subscription.current_period_start).getutc.strftime("%m/%d/%Y")
       @period_end = Time.at(@subscription.current_period_end).getutc.strftime("%m/%d/%Y")
-
-      
+    end
   end
 
   #content = @event_json
