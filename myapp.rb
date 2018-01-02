@@ -51,7 +51,9 @@ post '/InvoicePaymentSucceeded' do
           sub_id = i['id']
           logger.debug sub_id
         }
+      end
     end
+  end
 
   #content = @event_json
   #event_json.customer
