@@ -42,7 +42,8 @@ post '/InvoicePaymentSucceeded' do
   puts "Hello, logs!"
 
   event_json = JSON.parse(request.body.read)
-  puts event_json["created"]
+  puts event_json
+  #puts event_json["created"]
   #puts event_json.
   #content = @event_json
   #event_json.customer
