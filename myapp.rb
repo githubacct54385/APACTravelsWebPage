@@ -51,7 +51,8 @@ post '/InvoicePaymentSucceeded' do
 
   event_id = JSON.parse(payload)["id"].to_s
   stripe_event = Stripe::Event.retrieve(event_id)
-  p stripe_event["id"]  
+  puts stripe_event.to_s
+  puts stripe_event["id"].to_s  
 
   puts "Hello, logs!"
 
@@ -100,39 +101,6 @@ def SendTestEmail(destEmail, subject, content)
   puts response.status_code
   puts response.body
   puts response.headers
-end
-
-
-post '/webhook2' do
-  status 200
-  #@sendEmail = 'alexbarke002@gmail.com'
-  #@dest = 'Singapore'
-
-  # Retrieve the request's body and parse it as JSON
-  #@event_json = JSON.parse(request.body.read)
-
-  # Retrieve the event from Stripe
-  #@event = Stripe::Event.retrieve(@event_json['id'])
-
-  #if @event.type == "charge.succeeded"
-    # Retrieve the charge
-  #  @charge = Stripe::Charge.retrieve(id: @event.data.object.charge, expand: ['customer'])
-  #  @email = @charge.name
-  #  SendEmailUsingTemplateJson(@email, @dest)
-  #end
-
-end
-
-post '/webhook' do
-  status 200
-  #puts "Enter webhook code"
-  # Retrieve the request's body and parse it as JSON
-  #@event_json = JSON.parse(request.body.read)
-
-  # Retrieve the event from Stripe
-  #@event = Stripe::Event.retrieve(@event_json['id'])
-
-  #SendEmailUsingTemplateJson('alexbarke002@gmail.com', 'Singapore')
 end
 
 def SendEmailUsingTemplateJson(toEmail, dest)
