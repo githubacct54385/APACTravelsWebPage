@@ -48,8 +48,13 @@ post '/InvoicePaymentSucceeded' do
   p parsed["main_item"]["stats"]["a"]
 
 
-  event_json = JSON.parse(request.body.read)
-  p event_json["id"]
+  #event_json = JSON.parse(request.body.read)
+  #p event_json["id"]
+
+  stripe_customer_params = JSON.parse request.body.to_s
+  puts stripe_customer_params
+  #stripe_customer_params['id']
+  #stripe_customer_params['cards']
 
 
   #event_json = JSON.parse(request.body.read)
