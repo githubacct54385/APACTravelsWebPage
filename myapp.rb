@@ -51,7 +51,7 @@ post '/InvoicePaymentSucceeded' do
 
   event_id = JSON.parse(payload)["id"]
   stripe_event = Stripe::Event.retrieve(event_id)
-  stripe_event["id"]  
+  p stripe_event["id"]  
 
   puts "Hello, logs!"
 
