@@ -45,10 +45,13 @@ post '/InvoicePaymentSucceeded' do
   status 200
 
   #p payload
-  p "Payload Id: "
-  p JSON.parse(payload)
-  p JSON.parse(payload)["id"]
+  #p "Payload Id: "
+  #p JSON.parse(payload)
+  #p JSON.parse(payload)["id"]
 
+  event_id = JSON.parse(payload)["id"]
+  stripe_event = Stripe::Event.retrieve(event_id)
+  stripe_event["id"]  
 
   puts "Hello, logs!"
 
