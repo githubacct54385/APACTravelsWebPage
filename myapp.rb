@@ -17,11 +17,6 @@ get '/' do
   erb :index
 end
 
-#StripeEvent.subscribe 'invoice.payment_succeeded' do |event|
-  # Look ma, no Rails!
-#  puts "Invoice Payment Succeeded"
-#end
-
 post '/InvoicePaymentSucceeded' do
 
   payload = request.body.read
@@ -50,11 +45,15 @@ post '/InvoicePaymentSucceeded' do
   #p JSON.parse(payload)["id"]
 
   event_id = JSON.parse(payload)["id"].to_s
+  
+  # get the event from the Stripe API (Helps to verify it is not fraudulent)
   stripe_event = Stripe::Event.retrieve(event_id)
-  puts stripe_event.to_s
-  puts stripe_event["id"].to_s  
 
-  puts "Hello, logs!"
+  puts stripe_event.to_s
+  puts 'Event ID: ' + stripe_event["id"].to_s  
+
+  customer = Stripe::Customer.retrieve(stripe_event["data"]["object"]["customer"])
+  puts 'Customer: ' + customer.email
 
   #string = '{"desc":{"someKey":"someValue","anotherKey":"value"},"main_item":{"stats":{"a":8,"b":12,"c":10}}}'
   #parsed = JSON.parse(string) # returns a hash
