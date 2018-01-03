@@ -46,7 +46,7 @@ post '/InvoicePaymentSucceeded' do
 
   #p payload
   p "Payload Id: "
-  p Json.parse(payload)
+  p JSON.parse(payload)
 
 
   puts "Hello, logs!"
