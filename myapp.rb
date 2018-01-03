@@ -17,6 +17,11 @@ get '/' do
   erb :index
 end
 
+StripeEvent.subscribe 'invoice.payment_succeeded' do |event|
+  # Look ma, no Rails!
+  puts "Invoice Payment Succeeded"
+end
+
 post '/InvoicePaymentSucceeded' do
 
   payload = request.body.read
