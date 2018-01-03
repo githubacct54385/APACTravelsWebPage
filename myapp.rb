@@ -55,6 +55,10 @@ post '/InvoicePaymentSucceeded' do
   customer = Stripe::Customer.retrieve(stripe_event["data"]["object"]["customer"])
   puts 'Customer: ' + customer.email
 
+  content = "Thank you for your continued business using APAC Travels!"
+
+  SendTestEmail(customer.email.to_s, 'Invoice Succeeded for APAC Travels', content)
+
   #string = '{"desc":{"someKey":"someValue","anotherKey":"value"},"main_item":{"stats":{"a":8,"b":12,"c":10}}}'
   #parsed = JSON.parse(string) # returns a hash
 
@@ -192,7 +196,7 @@ post '/chargeSingapore' do
   )
 
   @dest = "Singapore"
-  SendEmailUsingTemplateJson(@sendEmail, @dest)
+  #SendEmailUsingTemplateJson(@sendEmail, @dest)
   #SendEmail(@sendEmail, @dest)
   erb :charge
 end
