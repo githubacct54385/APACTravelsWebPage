@@ -39,20 +39,23 @@ post '/InvoicePaymentSucceeded' do
 
   status 200
 
+  p payload
+
+
   puts "Hello, logs!"
 
-  string = '{"desc":{"someKey":"someValue","anotherKey":"value"},"main_item":{"stats":{"a":8,"b":12,"c":10}}}'
-  parsed = JSON.parse(string) # returns a hash
+  #string = '{"desc":{"someKey":"someValue","anotherKey":"value"},"main_item":{"stats":{"a":8,"b":12,"c":10}}}'
+  #parsed = JSON.parse(string) # returns a hash
 
-  p parsed["desc"]["someKey"]
-  p parsed["main_item"]["stats"]["a"]
+  #p parsed["desc"]["someKey"]
+  #p parsed["main_item"]["stats"]["a"]
 
 
   #event_json = JSON.parse(request.body.read)
   #p event_json["id"]
 
-  stripe_customer_params = JSON.parse request.body.to_s
-  puts stripe_customer_params
+  #stripe_customer_params = JSON.parse request.body.to_s
+  #puts stripe_customer_params
   #stripe_customer_params['id']
   #stripe_customer_params['cards']
 
