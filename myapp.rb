@@ -17,10 +17,10 @@ get '/' do
   erb :index
 end
 
-StripeEvent.subscribe 'invoice.payment_succeeded' do |event|
+#StripeEvent.subscribe 'invoice.payment_succeeded' do |event|
   # Look ma, no Rails!
-  puts "Invoice Payment Succeeded"
-end
+#  puts "Invoice Payment Succeeded"
+#end
 
 post '/InvoicePaymentSucceeded' do
 
@@ -46,7 +46,7 @@ post '/InvoicePaymentSucceeded' do
 
   #p payload
   p "Payload Id: "
-  p payload["id"]
+  p payload
 
 
   puts "Hello, logs!"
