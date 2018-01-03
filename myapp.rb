@@ -268,14 +268,16 @@ post '/subscribeTravelRewards' do
     :source  => params[:stripeToken]
   )
 
-  Stripe::Subscription.create(
-    :customer => customer.id,
-    :items => [
-      {
-        :plan => "123",
-      },
-    ],
-  )
+  puts customer
+
+  #Stripe::Subscription.create(
+  #  :customer => customer.id,
+  #  :items => [
+  #    {
+  #      :plan => "123",
+  #    },
+  #  ],
+  #)
 
   erb :subscribedTravelRewards
 end
