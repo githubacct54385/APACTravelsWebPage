@@ -39,11 +39,6 @@ post '/InvoicePaymentSucceeded' do
 
   status 200
 
-  #p payload
-  #p "Payload Id: "
-  #p JSON.parse(payload)
-  #p JSON.parse(payload)["id"]
-
   event_id = JSON.parse(payload)["id"].to_s
   
   # get the event from the Stripe API (Helps to verify it is not fraudulent)
@@ -58,31 +53,6 @@ post '/InvoicePaymentSucceeded' do
   content = "Thank you for your continued business using APAC Travels!"
 
   SendTestEmail(customer.email.to_s, 'Invoice Succeeded for APAC Travels', content)
-
-  #string = '{"desc":{"someKey":"someValue","anotherKey":"value"},"main_item":{"stats":{"a":8,"b":12,"c":10}}}'
-  #parsed = JSON.parse(string) # returns a hash
-
-  #p parsed["desc"]["someKey"]
-  #p parsed["main_item"]["stats"]["a"]
-
-
-  #event_json = JSON.parse(request.body.read)
-  #p event_json["id"]
-
-  #stripe_customer_params = JSON.parse request.body.to_s
-  #puts stripe_customer_params
-  #stripe_customer_params['id']
-  #stripe_customer_params['cards']
-
-
-  #event_json = JSON.parse(request.body.read)
-  #puts event_json
-  #puts event_json["created"]
-  #puts event_json.
-  #content = @event_json
-  #event_json.customer
-  #content = "Thank you for continuing your subscription to APAC Travels.  Your card has been billed $10."
-  #SendTestEmail('alexbarke002@gmail.com', 'Invoice Succeeded for APAC Travels', content)
 end
 
 def SendTestEmail(destEmail, subject, content)
@@ -196,7 +166,7 @@ post '/chargeSingapore' do
   )
 
   @dest = "Singapore"
-  #SendEmailUsingTemplateJson(@sendEmail, @dest)
+  SendEmailUsingTemplateJson(@sendEmail, @dest)
   #SendEmail(@sendEmail, @dest)
   erb :charge
 end
