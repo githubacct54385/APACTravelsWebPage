@@ -48,6 +48,9 @@ post '/InvoicePaymentSucceeded' do
   p parsed["main_item"]["stats"]["a"]
 
 
+  event_json = JSON.parse(request.body.read)
+  p event_json ["data"]["object"]["id"]
+
 
   #event_json = JSON.parse(request.body.read)
   #puts event_json
