@@ -39,7 +39,9 @@ post '/InvoicePaymentSucceeded' do
 
   status 200
 
-  p payload
+  #p payload
+  p "Payload Id: "
+  p payload.id
 
 
   puts "Hello, logs!"
