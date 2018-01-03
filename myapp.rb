@@ -49,7 +49,7 @@ post '/InvoicePaymentSucceeded' do
   #p JSON.parse(payload)
   #p JSON.parse(payload)["id"]
 
-  event_id = JSON.parse(payload)["id"]
+  event_id = JSON.parse(payload)["id"].to_s
   stripe_event = Stripe::Event.retrieve(event_id)
   p stripe_event["id"]  
 
