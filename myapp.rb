@@ -41,7 +41,7 @@ post '/InvoicePaymentSucceeded' do
 
   #p payload
   p "Payload Id: "
-  p payload.id
+  p payload["id"]
 
 
   puts "Hello, logs!"
