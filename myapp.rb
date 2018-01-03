@@ -49,7 +49,7 @@ post '/InvoicePaymentSucceeded' do
 
 
   event_json = JSON.parse(request.body.read)
-  p event_json ["data"]["object"]["id"]
+  p event_json["id"]
 
 
   #event_json = JSON.parse(request.body.read)
