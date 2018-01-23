@@ -153,10 +153,7 @@ post '/chargeSingapore' do
   @amount = 80000
   @sendEmail = params[:stripeEmail]
 
-  customer = Stripe::Customer.create(
-    :email => @sendEmail,
-    :source  => params[:stripeToken]
-  )
+  customer = CreateOrRetrieveCustomer(@sendEmail)
 
   charge = Stripe::Charge.create(
     :amount      => @amount,
@@ -167,7 +164,6 @@ post '/chargeSingapore' do
 
   @dest = "Singapore"
   SendEmailUsingTemplateJson(@sendEmail, @dest)
-  #SendEmail(@sendEmail, @dest)
   erb :charge
 end
 
@@ -176,10 +172,7 @@ post '/chargeThailand' do
   @amount = 80000
   @sendEmail = params[:stripeEmail]
 
-	customer = Stripe::Customer.create(
-    :email => @sendEmail,
-    :source  => params[:stripeToken]
-  )
+  customer = CreateOrRetrieveCustomer(@sendEmail)
 
   charge = Stripe::Charge.create(
     :amount      => @amount,
@@ -198,10 +191,7 @@ post '/chargeChina' do
   @amount = 80000
   @sendEmail = params[:stripeEmail]
 
-	customer = Stripe::Customer.create(
-    :email => @sendEmail,
-    :source  => params[:stripeToken]
-  )
+	customer = CreateOrRetrieveCustomer(@sendEmail)
 
   charge = Stripe::Charge.create(
     :amount      => @amount,
@@ -220,10 +210,7 @@ post '/chargeVietnam' do
   @amount = 80000
   @sendEmail = params[:stripeEmail]
 
-	customer = Stripe::Customer.create(
-    :email => @sendEmail,
-    :source  => params[:stripeToken]
-  )
+	customer = CreateOrRetrieveCustomer(@sendEmail)
 
   charge = Stripe::Charge.create(
     :amount      => @amount,
@@ -242,10 +229,7 @@ post '/chargeCambodia' do
   @amount = 80000
   @sendEmail = params[:stripeEmail]
 
-	customer = Stripe::Customer.create(
-    :email => @sendEmail,
-    :source  => params[:stripeToken]
-  )
+	customer = CreateOrRetrieveCustomer(@sendEmail)
 
   charge = Stripe::Charge.create(
     :amount      => @amount,
@@ -259,16 +243,16 @@ post '/chargeCambodia' do
   erb :charge
 end
 
-post '/subscribeTravelRewards' do
-  @amount = 1000
-  @custEmail = params[:stripeEmail]
+#post '/subscribeTravelRewards' do
+#  @amount = 1000
+#  @custEmail = params[:stripeEmail]
 
-  customer = Stripe::Customer.create(
-    :email => @custEmail,
-    :source  => params[:stripeToken]
-  )
+#  customer = Stripe::Customer.create(
+#    :email => @custEmail,
+#    :source  => params[:stripeToken]
+#  )
 
-  puts customer
+#  puts customer
 
   #Stripe::Subscription.create(
   #  :customer => customer.id,
@@ -279,7 +263,28 @@ post '/subscribeTravelRewards' do
   #  ],
   #)
 
-  erb :subscribedTravelRewards
+#  erb :subscribedTravelRewards
+#end
+
+def CreateOrRetrieveCustomer(customerEmail)
+  # Get first customer with matching email to cardholder-email
+  customers = Stripe::Customer.list(limit: 1, email: customerEmail)
+
+  # Initialize empty customer variable to be set below
+  customer = nil
+
+  # If not matching customer, create a new one
+  if customers.data.empty?
+    customer = Stripe::Customer.create(
+      :email => params[:"cardholder-email"],
+      :source  => params[:stripeToken],
+      :description => "Customer for #{params[:"cardholder-email"]}"
+    )
+  # If matching customer found, get from stripe  
+  else
+    customer = Stripe::Customer.retrieve(customers.data.first.id)
+  end
+  return customer
 end
 
 error Stripe::CardError do
