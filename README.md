@@ -51,9 +51,6 @@ json_map = { 'personalizations' => [
 
   sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
   response = sg.client.mail._("send").post(request_body: data)
-  puts response.status_code
-  puts response.body
-  puts response.headers
 ```
 
 Working with Stripe Checkout was also really simple.  Just plug in the Javascript they provide on their website in your HTML, setup your Sinatra code to handle the response and your done.  Stripe has a [tutorial](http://sinatrarb.com/intro.html) on how to get a Sinatra app working with Stripe.
