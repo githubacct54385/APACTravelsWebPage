@@ -12,7 +12,7 @@ To get started with the app, clone the repo
 
 ```
 $ git clone https://github.com/githubacct54385/APACTravelsWebPage.git
-$ cd APACTravelWebPage
+$ cd APACTravelsWebPage
 ```
 
 Now install the needed gems:
